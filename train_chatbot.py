@@ -1,8 +1,8 @@
 import nltk
 nltk.download('punkt')
-nltk.download('wordnet')
-from nltk.stem import WordNetLemmatizer
-lemmatizer = WordNetLemmatizer()
+from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
+factory = StemmerFactory()
+stemmer = factory.create_stemmer()
 import json
 import pickle
 
@@ -33,7 +33,7 @@ for intent in intents['intents']:
         if intent['tag'] not in classes:
             classes.append(intent['tag'])
 
-words = [lemmatizer.lemmatize(w.lower()) for w in words if w not in ignore_words]
+words = [stemmer.stem(w.lower()) for w in words if w not in ignore_words]
 words = sorted(list(set(words)))
 
 classes = sorted(list(set(classes)))
@@ -56,8 +56,10 @@ for doc in documents:
     bag = []
     # list of tokenized words for the pattern
     pattern_words = doc[0]
+    print ('pattern_words 1 :', pattern_words, ' \n')
     # lemmatize each word - create base word, in attempt to represent related words
-    pattern_words = [lemmatizer.lemmatize(word.lower()) for word in pattern_words]
+    pattern_words = [stemmer.stem(word.lower()) for word in pattern_words]
+    print ('pattern_words 2 :', pattern_words, ' \n')
     # create our bag of words array with 1, if word match found in current pattern
     for w in words:
         bag.append(1) if w in pattern_words else bag.append(0)
@@ -90,7 +92,7 @@ sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
 
 #fitting and saving the model
-hist = model.fit(np.array(train_x), np.array(train_y), epochs=200, batch_size=5, verbose=1)
+hist = model.fit(np.array(train_x), np.array(train_y), epochs=62, batch_size=5, verbose=1)
 model.save('chatbot_model.h5', hist)
 
 print("model created")
