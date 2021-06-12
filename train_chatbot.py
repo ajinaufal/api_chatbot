@@ -22,17 +22,15 @@ intents = json.loads(data_file)
 
 for intent in intents['intents']:
     for pattern in intent['patterns']:
-
         # take each word and tokenize it
         w = nltk.word_tokenize(pattern)
         words.extend(w)
         # adding documents
         documents.append((w, intent['tag']))
-
         # adding classes to our class list
         if intent['tag'] not in classes:
             classes.append(intent['tag'])
-
+            
 words = [stemmer.stem(w.lower()) for w in words if w not in ignore_words]
 words = sorted(list(set(words)))
 
@@ -56,10 +54,10 @@ for doc in documents:
     bag = []
     # list of tokenized words for the pattern
     pattern_words = doc[0]
-    print ('pattern_words 1 :', pattern_words, ' \n')
+    print ('pattern_words 1 :',' \n', doc, ' \n')
     # lemmatize each word - create base word, in attempt to represent related words
     pattern_words = [stemmer.stem(word.lower()) for word in pattern_words]
-    print ('pattern_words 2 :', pattern_words, ' \n')
+    print ('pattern_words 2 :',' \n', pattern_words, ' \n')
     # create our bag of words array with 1, if word match found in current pattern
     for w in words:
         bag.append(1) if w in pattern_words else bag.append(0)
