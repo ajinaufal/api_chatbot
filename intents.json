@@ -91,8 +91,38 @@
                 {
                         "tag": "poin",
                         "patterns": ["bisa bertanya mengenai menarik poin", "point", "poin", "Menarik poin", "pembelian poin", "tentang poin"],
-                        "responses": ["informasi poin silahkan kunjungi alamat ini : askhomelab.com/informasi_poin"],
+                        "responses": ["untuk informasi poin silahkan kunjungi alamat ini : <br/>askhomelab.com/informasi_poin"],
                         "context": ["keterangan point"]
+                },
+                {
+                        "tag": "ketentuan",
+                        "patterns": ["bisa bertanya ketentuan", "bisa bertanya syarat", "ketentuan", "syarat", "ketentuan dan syarat"],
+                        "responses": ["untuk informasi ketentuan dan syarat silahkan kunjungi alamat ini : <br/>askhomelab.com/syarat_dan_ketentuan"],
+                        "context": ["ketentuan dan syarat"]
+                },
+                {
+                        "tag": "homelab",
+                        "patterns": ["bisa bertanya tentang homelab", "homelab", "askhomelab", "bisa bertanya homelab"],
+                        "responses": ["untuk informasi tentang homelab silahkan kunjungi alamat ini : <br/>askhomelab.com/tentang_homelab"],
+                        "context": ["info homelab"]
+                },
+                {
+                        "tag": "privasi",
+                        "patterns": ["kebijakan privasi", "privasi", "bisa bertanya tentang kebijakan privasi", "bisa bertanya kebijakan privasi" ],
+                        "responses": ["untuk informasi kebijakan privasi pengguna silahkan kunjungi alamat ini : <br/>askhomelab.com/kebijakan_privasi"],
+                        "context": ["kebijakan privasi"]
+                },
+                {
+                        "tag": "keluhan",
+                        "patterns": ["punya keluhan", "Saya ingin mengajukan keluhan", "ada keluhan tentang layanan"],
+                        "responses": ["lixa akan membantu menyampaikan keluhan kamu kepada admin, silahkan tulis keluhan anda"],
+                        "context": ["keluhan-admin"]
+                },
+                {
+                        "tag": "keluhan-admin",
+                        "patterns": ["keluhan-admin"],
+                        "responses": ["keluhan kamu sudah lixa terima, silahkan tunggu jawaban dari admin"],
+                        "context": ["keluhan-admin"]
                 }
         ]
 }
