@@ -114,7 +114,7 @@
                 },
                 {
                         "tag": "keluhan",
-                        "patterns": ["punya keluhan", "Saya ingin mengajukan keluhan", "ada keluhan tentang layanan"],
+                        "patterns": ["punya keluhan", "Saya ingin mengajukan keluhan", "ada keluhan tentang layanan", "keluhan", "masalah"],
                         "responses": ["lixa akan membantu menyampaikan keluhan kamu kepada admin, silahkan tulis keluhan anda"],
                         "context": ["keluhan-admin"]
                 },
