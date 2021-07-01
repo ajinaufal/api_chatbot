@@ -14,6 +14,9 @@ intents = json.loads(open('intents.json').read())
 words = pickle.load(open('words.pkl','rb'))
 classes = pickle.load(open('classes.pkl','rb'))
 
+from nltk.translate.bleu_score import sentence_bleu
+documents = []
+
 
 app = FastAPI()
 
@@ -48,20 +51,44 @@ def predict_class(sentence, model):
     results.sort(key=lambda x: x[1], reverse=True)
     return_list = []
     for r in results:
-        return_list.append({"intent": classes[r[0]], "probability": str(r[1])})
+        return_list.append({"intent": classes[r[0]], "probability": r[1]})
     return return_list
 
 def getResponse(ints, intents_json):
+    result = []
     tag = ints[0]['intent']
     list_of_intents = intents_json['intents']
     for i in list_of_intents:
         if(i['tag']== tag):
-            result = random.choice(i['responses'])
+            result.append ({"kelas": i['tag'], "respon": random.choice(i['responses']), "konteks": (i['context']), "probability": (ints[0]['probability']*100)})
             break
     return result
 
+def bleu_steam(intents, sentence):
+    for intent in intents['intents']:
+        for pattern in intent['patterns']:
+            # take each word and tokenize it
+            sentence_words = nltk.word_tokenize(pattern)
+            sentence_words = [stemmer.stem(word.lower()) for word in sentence_words]
+            documents.append((sentence_words))
+    candidate = clean_up_sentence(sentence)
+    score = sentence_bleu(documents, candidate, weights=(1, 0, 0, 0))
+    return score
+
+def bleu(intents, sentence):
+    for intent in intents['intents']:
+        for pattern in intent['patterns']:
+            # take each word and tokenize it
+            sentence_words = nltk.word_tokenize(pattern)
+            documents.append((sentence_words))
+    candidate = clean_up_sentence(sentence)
+    score = sentence_bleu(documents, candidate, weights=(1, 0, 0, 0))
+    return score
+
 @app.post("/")
-async def login(msg: str = Form(...)):
+async def chat_bot(msg: str = Form(...)):
     ints = predict_class(msg, model)
     res = getResponse(ints, intents)
-    return {"messages": res}
+    score_steam = bleu_steam(intents, msg)
+    score = bleu_steam(intents, msg)
+    return {"messages": res[0]['respon'], "kelas": res[0]['kelas'], "konteks": res[0]['konteks'][0], "akurasi": "%.2f" % float(res[0]['probability']), "score_bleu_dengan_steaming": "%.2f" % float(score_steam*100), "score_bleu_tanpa_steaming": "%.2f" % float(score*100)}

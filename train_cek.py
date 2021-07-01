@@ -8,10 +8,8 @@ import pickle
 
 import numpy as np
 from keras.models import Sequential
-from keras.layers import Dense, Activation, Dropout
+from keras.layers import Dense, Embedding, GlobalAveragePooling1D
 from keras.optimizers import SGD
-from keras.optimizers import Adam
-from keras.optimizers import Adagrad
 import random
 
 from keras.utils.vis_utils import plot_model
@@ -24,6 +22,7 @@ ignore_words = ['?', '!']
 data_file = open('intents.json').read()
 intents = json.loads(data_file)
 
+
 for intent in intents['intents']:
     for pattern in intent['patterns']:
         # take each word and tokenize it
@@ -33,7 +32,8 @@ for intent in intents['intents']:
         documents.append((w, intent['tag']))
         # adding classes to our class list
         if intent['tag'] not in classes:
-            classes.append(intent['tag'])          
+            classes.append(intent['tag'])
+            
 words = [stemmer.stem(w.lower()) for w in words if w not in ignore_words]
 words = sorted(list(set(words)))
 
@@ -76,30 +76,38 @@ train_x = list(training[:,0])
 train_y = list(training[:,1])
 print("Training data created")
 
+model = Sequential()
+model.add(Embedding(vocab_size = 1000, embedding_dim = 16, input_length=20))
+model.add(GlobalAveragePooling1D())
+model.add(Dense(16, activation='relu'))
+model.add(Dense(16, activation='relu'))
+model.add(Dense(num_classes, activation='softmax'))
+
+model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+
 # Create model - 3 layers. First layer 128 neurons, second layer 64 neurons and 3rd output layer contains number of neurons
 # equal to number of intents to predict output intent with softmax
-model = Sequential()
-model.add(Dense(128, input_shape=(len(train_x[0]),), activation='relu'))
-model.add(Dropout(0.1))
-model.add(Dense(64, activation='relu'))
-model.add(Dropout(0.5))
-model.add(Dense(len(train_y[0]), activation='softmax'))
+# model = Sequential()
+# model.add(Dense(128, input_shape=(len(train_x[0]),), activation='relu'))
+# model.add(Dropout(0.5))
+# model.add(Dense(64, activation='relu'))
+# model.add(Dropout(0.5))
+# model.add(Dense(len(train_y[0]), activation='softmax'))
 
 plot_model(model, to_file='model_plot.png', show_shapes=True, show_layer_names=True)
 
 print(model.summary())
 # Compile model. Stochastic gradient descent with Nesterov accelerated gradient gives good results for this model
 sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
-
 model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
 
 #fitting and saving the model
-hist = model.fit(np.array(train_x), np.array(train_y), epochs=200, batch_size=5, verbose=1)
+hist = model.fit(np.array(train_x), np.array(train_y), epochs=200, batch_size=5, verbose=1, validation_data=(np.array(train_x),np.array(train_y)))
 model.save('chatbot_model.h5', hist)
-
 
 # summarize history for accuracy
 plt.plot(hist.history['accuracy'])
+plt.plot(hist.history['val_accuracy'])
 plt.title('model accuracy')
 plt.ylabel('accuracy')
 plt.xlabel('epoch')
@@ -108,6 +116,7 @@ plt.show()
 
 # summarize history for loss
 plt.plot(hist.history['loss'])
+plt.plot(hist.history['val_loss'])
 plt.title('model loss')
 plt.ylabel('loss')
 plt.xlabel('epoch')

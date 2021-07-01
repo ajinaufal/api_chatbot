@@ -1,142 +1,98 @@
 {
         "intents": [
                 {
+                        "tag": "tidak_mengerti",
+                        "patterns": ["", "Jawaban kamu ngaco", "Ah nggak nyambung jawabnya", "bodoh kamu", "bodoh", "ngaco"],
+                        "responses": ["Maaf Lixa masih belum mengerti dan terus belajar, semoga pertanyaanmu selanjutnya terjawab ya.."],
+                        "context": ["tidak mengerti"]
+                },
+                {
                         "tag": "salam",
-                        "patterns": [
-                                "Hi Lixa",
-                                "halo",
-                                "ada orang disana?",
-                                "halo",
-                                "bos",
-                                "bang",
-                                "test",
-                                "mau tanya dong",
-                                "mas",
-                                "kak"
-                        ],
-                        "responses": [
-                                "halo, aku lixa. Ada yang bisa dibantu?",
-                                "Hai, perkenalkan namaku lixa"
-                        ],
-                        "context": [
-                                ""
-                        ]
+                        "patterns": ["Hi Lixa", "halo", "bos", "bang", "test", "mas", "kak", "hai", "hey", "hi"],
+                        "responses": ["Hai, Aku adalah asisten admin yang akan membantu kamu"],
+                        "context": ["sapa"]
+                },
+                {
+                        "tag": "pagi",
+                        "patterns": ["pagi", "selamat pagi"],
+                        "responses": ["Pagi juga", "Selamat Pagi juga"],
+                        "context": ["sapa"]
+                },
+                {
+                        "tag": "siang",
+                        "patterns": ["siang", "selamat siang"],
+                        "responses": ["Siang juga", "Selamat Siang juga"],
+                        "context": ["sapa"]
+                },
+                {
+                        "tag": "sore",
+                        "patterns": ["sore", "selamat sore"],
+                        "responses": ["Siang juga", "Selamat Siang juga"],
+                        "context": ["sapa"]
+                },
+                {
+                        "tag": "malam",
+                        "patterns": ["malam", "selamat malam"],
+                        "responses": ["malam juga", "selamat malam juga"],
+                        "context": ["sapa"]
+                },
+                {
+                        "tag": "assalamualaikum",
+                        "patterns": ["assalamualaikum", "assalamualaikum warahmatullahi wabarakatu"],
+                        "responses": ["Waalaikumsalam", "Waalaikumsalam warahmatullahi wabarakatuh"],
+                        "context": ["sapa"]
+                },
+                {
+                        "tag": "kelakuan",
+                        "patterns": ["lagi apa", "sedang apa", "kamu sedang apa", "kamu lagi apa", "apa yang kamu lakukan", "lakukan"],
+                        "responses": ["Mengobrol dengan kamu", "Menunggu balasan dari kamu"],
+                        "context": ["sedang apa"]
+                },
+                {
+                        "tag": "sorry",
+                        "patterns": ["saya minta maaf", "sangat menyesal", "maafkan saya", "maaf"],
+                        "responses": ["Tidak apa-apa. Jangan khawatir", "Sudahlah tidak perlu dipikirkan."],
+                        "context": ["maaf"]
                 },
                 {
                         "tag": "berpisah",
-                        "patterns": [
-                                "Bye",
-                                "Sampai Ketemu nanti",
-                                "Sampai nanti",
-                                "dada"
-                        ],
-                        "responses": [
-                                "terimakaish telah berkunjung",
-                                "semoga harimu menyenangkan",
-                                "dah! dateng lagi ya"
-                        ],
-                        "context": [
-                                ""
-                        ]
+                        "patterns": ["Bye", "Sampai Ketemu nanti", "Sampai nanti", "sampai jumpa"],
+                        "responses": ["terimakaish telah berkunjung", "semoga harimu menyenangkan", "dah! dateng lagi ya"],
+                        "context": ["berpisah"]
                 },
                 {
                         "tag": "makasih",
-                        "patterns": [
-                                "Makasih",
-                                "Terimakasih",
-                                "Sangat Membantu"
-                        ],
-                        "responses": [
-                                "Senang bisa membantu"
-                        ],
-                        "context": [
-                                ""
-                        ]
+                        "patterns": ["Makasih", "Terimakasih", "Sangat Membantu"],
+                        "responses": ["Senang bisa membantu"],
+                        "context": ["terimakasih"]
                 },
-                {
-                        "tag": "nama",
-                        "patterns": [
-                                "siapa namamu?",
-                                "aku harus memanggilmu apa?"
-                        ],
-                        "responses": [
-                                "Kamu bisa memanggilku Lixa.",
-                                "Aku Lixa!",
-                                "Panggil saja aku Lixa"
-                        ],
-                        "context": [
-                                ""
-                        ]
+                {       "tag": "pertemuan",
+                        "patterns": ["senang bertemu denganmu", "saya sangat senang bertemu denganmu", "bertemu"],
+                        "responses": ["Senang bertemu denganmu juga", "Begitu juga. Aku berharap bisa membantumu", "Senang bertemu denganmu, juga", "Kesenangan adalah milikku"],
+                        "context": ["pertemuan"]
                 },
-                {
-                        "tag": "bantu",
-                        "patterns": [
-                                "Bisakah kamu membantu ku?",
-                                "Tolong bantu saya",
-                                "Bisakah lixa membantu?",
-                                "Apa yang dapat Anda lakukan untuk saya?",
-                                "aku butuh bantuan",
-                                "Saya butuh bantuan"
-                        ],
-                        "responses": [
-                                "Saya dapat melakukan dukungan untuk :"
-                        ],
-                        "context": [
-                                "bantuan"
-                        ]
-                },
-                {
-                        "tag": "keluhan",
-                        "patterns": [
-                                "punya keluhan",
-                                "Saya ingin mengajukan keluhan",
-                                "ada keluhan tentang layanan"
-                        ],
-                        "responses": [
-                                "salurkan keluhan kamu melalui email homelab di info@askhomelab.com"
-                        ],
-                        "context": [
-                                ""
-                        ]
+                {       "tag": "bertemu",
+                        "patterns": ["senang berbicara denganmu", "saya senang bisa mengobrol denganmu", "saya mengobrol denganmu"],
+                        "responses": ["Kita bisa ngobrol lagi dilain waktu.", "Aku juga senang ngobrol denganmu."],
+                        "context": ["obrolan"]
                 },
                 {
                         "tag": "lixa",
-                        "patterns": [
-                                "Siapa kamu?",
-                                "Apa kamu?",
-                                "Siapa kamu?"
-                        ],
-                        "responses": [
-                                "Saya Lixa, asisten Bot Anda",
-                                "Saya Lixa, Bot Kecerdasan Buatan"
-                        ],
-                        "context": [
-                                ""
-                        ]
+                        "patterns": ["Siapa kamu", "siapa namamu", "aku harus memanggilmu apa"],
+                        "responses": ["Saya Lixa, virtual asisten anda", "Saya Lixa, Bot Kecerdasan Buatan", "Kamu bisa memanggilku Lixa.", "Aku Lixa!", "Panggil saja aku Lixa"],
+                        "context": ["nama"]
                 },
                 {
-                        "tag": "tidak_mengerti",
-                        "patterns": [],
-                        "responses": [
-                                "Maaf, Aku tidak mengerti",
-                                "Tolong beri lixa informasi lebih lanjut",
-                                "lixa tidak yakin mengerti akan hal itu"
-                        ],
-                        "context": [
-                                ""
-                        ]
+                        "tag": "tolong",
+                        "patterns": ["Bisakah kamu membantu ku?", "Tolong bantu saya", "Bisakah lixa membantu?", "Apa yang dapat Anda lakukan untuk saya?", "aku butuh bantuan", "Saya butuh bantuan", "bantu"],
+                        "responses": ["sementara ini lixa hanya bisa membantumu beberapa hal seperti : <br/>- informasi poin <br/>- syarat dan ketentuan <br/>- kebijakan privasi"],
+                        "context": ["tolong"]
                 },
                 {
-                        "tag": "pencarian_pertanyaan",
-                        "patterns": [
-                                "pencarian pertanyaan"
-                        ],
-                        "responses": [
-                                "Lixa sedang ngobrol dengan sistem Homelab untuk mencari pertanyaan mu. Silahkan masukan keyword dari pertanyaan yang anda cari, jika sudah silahkan masukan ( hei lixa ) untuk memanggil lixa kembali"
-                        ],
-                        "context": [
-                                "pencarian_pertanyaan"
-                        ]
+                        "tag": "poin",
+                        "patterns": ["bisa bertanya mengenai menarik poin", "point", "poin", "Menarik poin", "pembelian poin", "tentang poin"],
+                        "responses": ["informasi poin silahkan kunjungi alamat ini : askhomelab.com/informasi_poin"],
+                        "context": ["keterangan point"]
                 }
         ]
 }
