@@ -6,6 +6,7 @@ stemmer = factory.create_stemmer()
 import pickle
 import numpy as np
 from nltk.translate.bleu_score import sentence_bleu
+import time
 
 from keras.models import load_model
 model = load_model('chatbot_model.h5')
@@ -73,9 +74,11 @@ def bleu(intents, sentence):
     return score
 
 def chatbot_response(msg):
+    start_time = time.time()
     ints = predict_class(msg, model)
     res = getResponse(ints, intents)
     cek = bleu(intents, msg)
+    print("--- %s seconds ---" % (time.time() - start_time))
     return res[0]['respon']
 
 

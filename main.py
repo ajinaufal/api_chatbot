@@ -5,6 +5,7 @@ factory = StemmerFactory()
 stemmer = factory.create_stemmer()
 import pickle
 import numpy as np
+import time
 
 from keras.models import load_model
 model = load_model('chatbot_model.h5')
@@ -87,8 +88,17 @@ def bleu(intents, sentence):
 
 @app.post("/")
 async def chat_bot(msg: str = Form(...)):
+    start_time = time.time()
     ints = predict_class(msg, model)
     res = getResponse(ints, intents)
     score_steam = bleu_steam(intents, msg)
     score = bleu_steam(intents, msg)
-    return {"messages": res[0]['respon'], "kelas": res[0]['kelas'], "konteks": res[0]['konteks'][0], "akurasi": "%.2f" % float(res[0]['probability']), "score_bleu_dengan_steaming": "%.2f" % float(score_steam*100), "score_bleu_tanpa_steaming": "%.2f" % float(score*100)}
+    return {
+        "messages": res[0]['respon'], 
+        "kelas": res[0]['kelas'], 
+        "konteks": res[0]['konteks'][0], 
+        "akurasi": "%.2f" % float(res[0]['probability']), 
+        "waktu_proses": "%.2f" % float(time.time() - start_time),
+        "score_bleu_dengan_steaming": "%.2f" % float(score_steam*100), 
+        "score_bleu_tanpa_steaming": "%.2f" % float(score*100),
+    }

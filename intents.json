@@ -44,7 +44,7 @@
                 },
                 {
                         "tag": "kelakuan",
-                        "patterns": ["lagi apa", "sedang apa", "kamu sedang apa", "kamu lagi apa", "apa yang kamu lakukan", "lakukan"],
+                        "patterns": ["lagi apa", "sedang apa", "kamu sedang apa", "kamu lagi apa", "apa yang kamu lakukan", "lakukan", "kamu ngapain"],
                         "responses": ["Mengobrol dengan kamu", "Menunggu balasan dari kamu"],
                         "context": ["sedang apa"]
                 },
