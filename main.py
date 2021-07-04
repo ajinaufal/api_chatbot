@@ -76,29 +76,17 @@ def bleu_steam(intents, sentence):
     score = sentence_bleu(documents, candidate, weights=(1, 0, 0, 0))
     return score
 
-def bleu(intents, sentence):
-    for intent in intents['intents']:
-        for pattern in intent['patterns']:
-            # take each word and tokenize it
-            sentence_words = nltk.word_tokenize(pattern)
-            documents.append((sentence_words))
-    candidate = clean_up_sentence(sentence)
-    score = sentence_bleu(documents, candidate, weights=(1, 0, 0, 0))
-    return score
+
 
 @app.post("/")
 async def chat_bot(msg: str = Form(...)):
     start_time = time.time()
     ints = predict_class(msg, model)
     res = getResponse(ints, intents)
-    score_steam = bleu_steam(intents, msg)
-    score = bleu_steam(intents, msg)
     return {
         "messages": res[0]['respon'], 
         "kelas": res[0]['kelas'], 
         "konteks": res[0]['konteks'][0], 
         "akurasi": "%.2f" % float(res[0]['probability']), 
-        "waktu_proses": "%.2f" % float(time.time() - start_time),
-        "score_bleu_dengan_steaming": "%.2f" % float(score_steam*100), 
-        "score_bleu_tanpa_steaming": "%.2f" % float(score*100),
+        "waktu_proses": "%.2f" % float(time.time() - start_time)
     }
