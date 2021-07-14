@@ -87,11 +87,12 @@ def chatbot_response(msg):
     start_time = time.time()
     ints = predict_class(msg, model)
     res = getResponse(ints, intents)
-    cek = bleu(intents, msg)
-    score_steam = bleu_steam(intents, msg)
-    score = bleu_steam(intents, msg)
-    print("score_bleu_dengan_steaming :","%.2f" % float(score*100))
-    print("--- %s seconds ---" % (time.time() - start_time))
+    # cek = bleu(intents, msg)
+    # score_steam = bleu_steam(intents, msg)
+    # score = bleu_steam(intents, msg)
+    # print("score_bleu_dengan_steaming :","%.2f" % float(score*100))
+    # print("--- %s seconds ---" % (time.time() - start_time))
+    print(res)
     return res[0]['respon']
 
 #Creating GUI with tkinter

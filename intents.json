@@ -85,7 +85,7 @@
                 {
                         "tag": "tolong",
                         "patterns": ["Bisakah kamu membantu ku?", "Tolong bantu saya", "Bisakah lixa membantu?", "Apa yang dapat Anda lakukan untuk saya?", "aku butuh bantuan", "Saya butuh bantuan", "bantu", "tanya"],
-                        "responses": ["sementara ini lixa hanya bisa membantumu beberapa hal seperti : <br/>- Informasi Poin <br/>- Syarat dan Ketentuan <br/>- Kebijakan Privasi <br/>- Keluhan"],
+                        "responses": ["sementara ini lixa hanya bisa membantumu beberapa dengan kata kunci : <br/>- Informasi Poin<br/>-Syarat dan Ketentuan<br/>- Kebijakan Privasi<br/>- Keluhan"],
                         "context": ["tolong"]
                 },
                 {

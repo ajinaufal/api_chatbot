@@ -92,7 +92,7 @@ plot_model(model, to_file='model_plot.png', show_shapes=True, show_layer_names=T
 print(model.summary())
 # Compile model. Stochastic gradient descent with Nesterov accelerated gradient gives good results for this model
 adx = Adamax(learning_rate=0.02)
-sgd = SGD(lr=0.02, decay=1e-6, momentum=0.9, nesterov=True)
+sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 
 model.compile(loss='categorical_crossentropy', optimizer=adx, metrics=['accuracy'])
 
