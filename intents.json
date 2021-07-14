@@ -85,7 +85,7 @@
                 {
                         "tag": "tolong",
                         "patterns": ["Bisakah kamu membantu ku?", "Tolong bantu saya", "Bisakah lixa membantu?", "Apa yang dapat Anda lakukan untuk saya?", "aku butuh bantuan", "Saya butuh bantuan", "bantu", "tanya"],
-                        "responses": ["sementara ini lixa hanya bisa membantumu beberapa hal seperti : <br/>- informasi poin <br/>- syarat dan ketentuan <br/>- kebijakan privasi"],
+                        "responses": ["sementara ini lixa hanya bisa membantumu beberapa hal seperti : <br/>- Informasi Poin <br/>- Syarat dan Ketentuan <br/>- Kebijakan Privasi <br/>- Keluhan"],
                         "context": ["tolong"]
                 },
                 {
@@ -115,7 +115,7 @@
                 {
                         "tag": "keluhan",
                         "patterns": ["punya keluhan", "Saya ingin mengajukan keluhan", "ada keluhan tentang layanan", "keluhan", "masalah"],
-                        "responses": ["lixa akan membantu menyampaikan keluhan kamu kepada admin, silahkan tulis keluhan anda"],
+                        "responses": ["lixa akan membantu menyampaikan keluhan kamu kepada admin"],
                         "context": ["keluhan-admin"]
                 },
                 {
