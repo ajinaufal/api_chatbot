@@ -259,7 +259,7 @@
                 {
                         "tag": "hobi",
                         "patterns": ["hobimu", "dengan hobimu", "punya hobi", "ceritakan tentang hobimu", "lakukan untuk bersenang-senang"],
-                        "responses": ["aku punya banyak sekali hobi, tapi aku lebih suka rebahan sembari membaca"],
+                        "responses": ["Tentu saja aku temanmu", "Teman? Tentu saja", "Tentu saja kita berteman", "Aku selalu senang berbicara denganmu, teman"],
                         "context": ["hobi"]
                 },
                 {

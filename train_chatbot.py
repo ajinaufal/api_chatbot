@@ -34,17 +34,17 @@ for intent in intents['intents']:
         documents.append((w, intent['tag']))
         # adding classes to our class list
         if intent['tag'] not in classes:
-            classes.append(intent['tag'])          
+            classes.append(intent['tag'])    
+                  
 words = [stemmer.stem(w.lower()) for w in words if w not in ignore_words]
 words = sorted(list(set(words)))
-
 classes = sorted(list(set(classes)))
 
 print (len(documents), "documents")
 
-print (len(classes), "classes", classes)
+print (len(classes), "classes")
 
-print (len(words), "unique lemmatized words", words)
+print (len(words), "unique lemmatized words")
 
 
 pickle.dump(words,open('words.pkl','wb'))
